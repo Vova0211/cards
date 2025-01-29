@@ -11,7 +11,7 @@
 <body>
     <div class="content">
         <h1 class="title">Модули курса веб верстка</h1>
-        <div class="container">
+        <div class="container" id="cont">
         <div class="card">
             <div class="card__image img1"></div>
             <h2 class="card__title">Основные тэги</h2>
@@ -101,10 +101,22 @@
             <p class="card__number">08</p>
         </div>
     </div>
-    <button class="add btn" onclick="addCard()">Показать ещё</button>
-    <button class="rm btn inv" onclick="rmCard()">Скрыть</button>
+    <button class="add btn">Показать ещё</button>
+    <button class="rm btn inv">Скрыть</button>
     </div>
+    <template id="temp">
+        <div class="card">
+            <div class="card__image img1"></div>
+            <h2 class="card__title">Основные тэги</h2>
+            <ul class="card__list">
+                <li class="card__item">Первый</li>
+                <li class="card__item">Второй</li>
+                <li class="card__item">Третий</li>
+                <li class="card__item">Четвертый</li>
+            </ul>
+            <p class="card__number">01</p>
+        </div>
+    </template>
     <script src="index.js"></script>
 </body>
-
 </html>
