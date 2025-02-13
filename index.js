@@ -1,106 +1,147 @@
 let amountCards = 0;
-let maxAmount = 4;
-function addCard() {
-    document.querySelector(`.dop${amountCards}`).classList.remove('inv');
-    amountCards++;
-    document.querySelector(`.dop${amountCards}`).classList.remove('inv');
-    amountCards++;
-    if (amountCards >= maxAmount) {
-        document.querySelector('.add').classList.add('inv');
-        document.querySelector('.rm').classList.remove('inv');
-        amountCards--;
-    }
-}
-function rmCard() {
-    document.querySelector(`.dop${amountCards}`).classList.add('inv');
-    amountCards--;
-    document.querySelector(`.dop${amountCards}`).classList.add('inv');
-    amountCards--;
-    if (amountCards <= 0) {
-        document.querySelector('.add').classList.remove('inv');
-        document.querySelector('.rm').classList.add('inv');
-        amountCards = 0;
-    }
-}
-const btn_add = document.getElementsByClassName("add");
-const btn_rm = document.getElementsByClassName("rm");
-// btn_add[0].addEventListener('click', addCard);
-// btn_rm[0].addEventListener('click', rmCard);
-// document.body.onload = addCard3;
+let maxAmount = 6;
+const btn_add = document.getElementsByClassName("add")[0];
+// const btn_rm = document.getElementsByClassName("rm");
 
-/*btn_add[0].addEventListener("click", () => {
-    for (let i = 0; i < 2; i++) {
-        addCard2();
-        amountCards++;
-    }
-    if (amountCards >= maxAmount) {
-        btn_add[0].classList.add("inv");
-        btn_rm[0].classList.remove("inv");
-    }
-});*/
-btn_rm[0].addEventListener('click', () => {
-    for (let i = 0; i < 2; i++) {
+
+function remove(){
+    for (let i = 0; i < 6; i++) {
         rmCard2();
         amountCards--;
     }
     if (amountCards == 0) {
-        btn_add[0].classList.remove("inv");
-        btn_rm[0].classList.add("inv");
+        btn_add.textContent = "Показать ещё"
+        btn_add.removeEventListener("click", remove);
+        btn_add.addEventListener("click", add)
     }
-});
-
-btn_add[0].addEventListener("click", () => {
-    for (let i = 0; i < 2; i++) {
-        addCard3();
-        amountCards++;
-    }
-    if (amountCards >= maxAmount) {
-        btn_add[0].classList.add("inv");
-        btn_rm[0].classList.remove("inv");
-    }
-});
-
-
-const titles = ["Работа с CSS", "Позиционирование", "Работа с CSS", "Позиционирование"];
-const list_li = ["Первый", "Второй", "Третий", "Четвертый"];
-function addCard2() {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    const img = document.createElement('div');
-    img.classList.add("card__image", `img${amountCards + 1}`);  
-    const title = document.createElement('h2');
-    title.textContent = titles[amountCards];
-    title.classList.add("card__title");
-    const list = document.createElement('ul');
-    list.classList.add("card__list");
-    for (let i = 0; i < list_li.length; i++) {
-        const item = document.createElement('li');
-        item.classList.add("card__item");
-        item.textContent = list_li[i];
-        list.appendChild(item);
-    }
-    const cardNum = document.createElement("p");
-    cardNum.classList.add("card__number");
-    cardNum.textContent = `0${amountCards + 5}`;
-
-    card.appendChild(img);
-    card.appendChild(title);
-    card.appendChild(list)
-    card.appendChild(cardNum);
-    document.getElementById("cont").appendChild(card);
 }
-function addCard3() {
-    const template = document.getElementById("temp");
-    const card = template.content.cloneNode(true);
-    const img = card.querySelectorAll(".card__image");
-    img[0].classList.remove("img1");
-    img[0].classList.add(`img${amountCards + 1}`);
-    const title = card.querySelectorAll(".card__title");
-    title[0].textContent = titles[amountCards];
-    const cardNum = card.querySelectorAll(".card__number");
-    cardNum[0].textContent = `0${amountCards + 5}`;
+function add(){
+    addCard2();
+    if (amountCards >= maxAmount) {
+        btn_add.textContent = "Убрать"
+        btn_add.removeEventListener("click", add);
+        btn_add.addEventListener("click", remove)
 
-    document.getElementById("cont").appendChild(card);
+    }
+}
+btn_add.addEventListener("click", add)
+
+let courses = [
+    {
+        image: "images/html.jpg",
+        title: "Основы HTML",
+        topics: [
+            "Введение в HTML",
+            "Структура HTML-документа",
+            "Теги и атрибуты",
+            "Списки и таблицы",
+            "Работа с изображениями",
+            "Ссылки и навигация"
+        ]
+    },
+    {
+        image: "images/css.jpg",
+        title: "Основы CSS",
+        topics: [
+            "Введение в CSS",
+            "Селекторы и свойства",
+            "Модели блочной модели",
+            "Flexbox и Grid",
+            "Анимации и переходы",
+            "Стилизация форм"
+        ]
+    },
+    {
+        image: "images/javascript.jpg",
+        title: "Основы JavaScript",
+        topics: [
+            "Введение в JavaScript",
+            "Переменные и типы данных",
+            "Условия и циклы",
+            "Функции и объекты",
+            "Работа с DOM",
+            "Асинхронное программирование"
+        ]
+    },
+    {
+        image: "images/responsive.jpg",
+        title: "Адаптивный веб-дизайн",
+        topics: [
+            "Принципы адаптивного дизайна",
+            "Media Queries",
+            "Mobile-first подход",
+            "Гридовые системы",
+            "Работа с изображениями",
+            "Тестирование адаптивного дизайна"
+        ]
+    },
+    {
+        image: "images/frameworks.jpg",
+        title: "Основы CSS-фреймворков",
+        topics: [
+            "Введение в CSS-фреймворки",
+            "Bootstrap",
+            "Tailwind CSS",
+            "Foundation",
+            "Стилизация компонентов",
+            "Адаптация фреймворков"
+        ]
+    },
+    {
+        image: "images/backend.jpg",
+        title: "Основы веб-разработки на Node.js",
+        topics: [
+            "Введение в Node.js",
+            "Установка и настройка окружения",
+            "Работа с Express.js",
+            "Создание API",
+            "Работа с базами данных",
+            "Деплой приложения"
+        ]
+    },
+    {
+        image: "images/git.jpg",
+        title: "Основы работы с Git",
+        topics: [
+            "Введение в системы контроля версий",
+            "Установка Git",
+            "Создание и клонирование репозиториев",
+            "Основные команды Git",
+            "Работа с ветками",
+            "Слияние и разрешение конфликтов"
+        ]
+    }
+];
+function addCard2() {
+    const data = courses.slice(0, 2);
+    data.forEach(info => {
+        const card = document.createElement("div");
+        const img = document.createElement('div');
+        const title = document.createElement('h2');
+        const list = document.createElement('ul');
+        const cardNum = document.createElement("p");
+        for (let i = 0; i < info.topics.length; i++) {
+            const item = document.createElement('li');
+            item.classList.add("card__item");
+            item.textContent = info.topics[i];
+            list.appendChild(item);
+        }
+
+        card.classList.add("card");
+        img.classList.add("card__image", `img${amountCards + 5}`); 
+        cardNum.classList.add("card__number");
+        title.classList.add("card__title");
+        list.classList.add("card__list");
+        cardNum.textContent = `${amountCards + 5}`;
+        title.textContent = info.title; 
+
+        card.appendChild(img);
+        card.appendChild(title);
+        card.appendChild(list)
+        card.appendChild(cardNum);
+        document.getElementById("cont").appendChild(card);
+        amountCards++;
+    });
 }
 function rmCard2() {
     const cards = document.getElementsByClassName("card");

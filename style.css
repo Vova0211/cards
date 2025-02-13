@@ -32,7 +32,9 @@
     background-position: center;
     background-size: cover;
 }
-
+.card__item {
+    margin-bottom: 5px;
+}
 .img1 {
     background-image: url(./img/img1.jpg);
 }
@@ -57,6 +59,23 @@
     background-image: url(./img/img6.jpg);
 }
 
+.img7 {
+    background-image: url(./img/img7.jpg);
+}
+
+.img8 {
+    background-image: url(./img/img8.png);
+}
+
+.img9 {
+    background-image: url(./img/img9.jpg);
+}
+
+.img10 {
+    background-image: url(./img/img10.jpg);
+}
+
+
 .card__number {
     position: absolute;
     bottom: 0;
@@ -68,7 +87,7 @@
     color:rgb(111, 0, 255);
 }
 .card__title {
-    text-indent: 10px;
+    margin-left: 10px;
     color:rgb(111, 0, 255);
     padding-bottom: 0;
     margin-bottom: 0;
